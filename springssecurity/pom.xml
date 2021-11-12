@@ -1,0 +1,151 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- 模型版本 -->
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
+	<groupId>com.simpleframe.spring</groupId>
+	<!-- 项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 -->
+	<artifactId>simple-spring-tools</artifactId>
+	<!-- 版本号 -->
+	<version>0.0.3-SNAPSHOT</version>
+	<!-- 打包 -->
+	<packaging>jar</packaging>
+
+	<!-- 引用spring-boot父层 -->
+	<parent>
+		<groupId>com.simpleframe.boot</groupId>
+		<artifactId>simple-boot-parent</artifactId>
+		<version>0.0.1-RELEASE</version>	
+	</parent>
+
+	<!-- 配置说明 -->
+	<properties>
+		<!-- 环境设置 begin -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven.test.skip>true</maven.test.skip>
+		<eclipse-plugin-download-sources>false</eclipse-plugin-download-sources>
+		<eclipse-plugin-download-javadocs>false</eclipse-plugin-download-javadocs>
+		<!-- 环境设置 end -->
+
+		<!-- 缓存服务器 satrt -->
+		<ehcache.version>2.6.11</ehcache.version>
+		<ehcache-web.version>2.0.4</ehcache-web.version>
+		<!-- 缓存服务器 end -->
+
+		<!-- common -->
+		<simple-boot-common.version>0.0.1-SNAPSHOT</simple-boot-common.version>
+	</properties>
+
+	<!-- 引入jar包 -->
+	<dependencies>
+
+		<!-- 自定义控件 -->
+		<dependency>
+			<groupId>com.simpleframe.boot</groupId>
+			<artifactId>simple-boot-common</artifactId>
+			<version>${simple-boot-common.version}</version>
+		</dependency>
+
+		<!-- web socket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
+		<!-- Spring Boot tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- spring-boot-devtools 热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- spring 安全架构 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- thymeleaf 如果使用 thymeleaf 的话 需要加载jar 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		-->
+		<!-- 缓存 begin -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>${ehcache.version}</version>
+			<!-- <version>2.4.8</version> -->
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-web</artifactId>
+			<version>${ehcache-web.version}</version>
+		</dependency>
+
+		<!-- JDBC device begin -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		</dependency>
+		<!-- JDBC device end -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- java-jwt -->
+		<dependency>
+	    <groupId>com.auth0</groupId>
+	    <artifactId>java-jwt</artifactId>
+	    <version>3.10.3</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>com/simpleframe/spring/**</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
